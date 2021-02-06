@@ -78,15 +78,15 @@ function sendNotificationIfNeed() {
   let SCKEY = push_key.replace(/[\r\n]/g,"")
 
   const options ={
-    uri:  `https://sctapi.ftqq.com/${SCKEY}.send`,
-    form: { text, desp },
+    uri:  `https://webhook.duyao.de/${SCKEY}.php`,
+    form: { 'title' : text, 'msg' : desp },
     json: true,
     method: 'POST'
   }
 
   rp.post(options).then(res=>{
-    const code = res['errno'];
-    if (code == 0) {
+    const code = res['status'];
+    if (code == 1) {
       console.log("通知发送成功，任务结束！")
     }
     else {
